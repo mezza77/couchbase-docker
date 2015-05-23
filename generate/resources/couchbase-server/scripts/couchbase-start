@@ -22,9 +22,10 @@ then
         var/lib/moxi
     chown -R couchbase:couchbase var
 
+    nohup /usr/local/bin/couchbase-start init &
+
     # Start couchbase
     echo "Starting Couchbase Server -- Web UI available at http://<ip>:8091"
-    exec gosu couchbase "$@"
 fi
 
 exec "$@"

@@ -22,9 +22,18 @@ then
         var/lib/moxi
     chown -R couchbase:couchbase var
 
+    nohup /usr/local/bin/couchbase-start init &
+
     # Start couchbase
     echo "Starting Couchbase Server -- Web UI available at http://<ip>:8091"
-    exec gosu couchbase "$@"
+    echo "kill all monkeys"
+    echo $@
+    exec gosu couchbase "$@" 
+elif [ "$1" = 'init' ]
+then
+
+sleep 30
+/opt/couchbase/bin/couchbase-cli cluster-init -c localhost:8091 --cluster-username=admin --cluster-password=oogway --cluster-ramsize=1024 > /tmp/start.log
 fi
 
 exec "$@"
