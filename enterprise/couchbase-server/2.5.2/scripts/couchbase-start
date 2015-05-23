@@ -26,8 +26,6 @@ then
 
     # Start couchbase
     echo "Starting Couchbase Server -- Web UI available at http://<ip>:8091"
-    echo "kill all monkeys"
-    echo $@
     exec gosu couchbase "$@" 
 elif [ "$1" = 'init' ]
 then
